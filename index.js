@@ -25,7 +25,21 @@ const PORT = 3001;
 
 
   app.get('/index', (req,res) =>{ 
-    res.sendFile('/public/index.html')
+    res.sendFile('index.html', { 
+        root: __dirname + '/public'
+    })
+  });
+
+  app.get('/productos', (req,res) =>{ 
+    res.sendFile('productos.html', { 
+        root: __dirname + '/public'
+    })
+  });
+
+  let contador = 0;
+  app.get('/contador', (req,res) =>{ 
+    contador++;
+    res.send(`el contador es igual a: ${contador}`)
   });
 
   const conexion = mysql.createConnection({
