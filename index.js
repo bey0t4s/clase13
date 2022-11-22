@@ -7,6 +7,11 @@ const mysql = require('mysql2');
 
 const PORT = 3001;
 
+//Middelware
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+
 //4 Respuesta al cliente (frontend)
   app.get('/', (req, res)=> {
     res.send(`<h1>Bienvenido a mi sitio<\h1>`)
@@ -60,6 +65,14 @@ else
 }
 
 });
+
+//Recibo datos con el método post
+app.post('/recibir', (req, res) =>{
+    
+  console.log(req.body.nombre);
+  res.send('Estamos contentos de que te contactes con nosotros')
+});
+
 
 app.listen(PORT, ()=> {
 console.log(`Servidor trabajando en el puerto ${PORT}`)
